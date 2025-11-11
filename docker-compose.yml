@@ -1,0 +1,40 @@
+version: "3.8"
+
+services:
+  gateway:
+    build: ./gateway
+    ports:
+      - "8200:8200"
+    depends_on:
+      - tasks-service
+      - usb
+    environment:
+      - SPRING_PROFILES_ACTIVE=dev
+
+  tasks-service:
+    build: ./tasks-service
+  # internal port 8100
+
+  usb:
+    build: ./usb
+  # internal port 8102
+
+  app-db:
+    image: postgres:15
+    restart: always
+    environment:
+      POSTGRES_DB: reshaka
+      POSTGRES_USER: hello
+      POSTGRES_PASSWORD: easteregg
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  redis-db:
+    image: redis:7
+    ports:
+      - "6379:6379"
+
+volumes:
+  pgdata:
