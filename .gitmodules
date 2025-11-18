@@ -1,0 +1,12 @@
+[submodule "reshaka-task-service"]
+	path = reshaka-task-service
+	url = https://github.com/Project-Reshaka/reshaka-task-service.git
+	branch = main
+[submodule "reshaka-gateway-service"]
+	path = reshaka-gateway-service
+	url = https://github.com/Project-Reshaka/reshaka-gateway-service.git
+	branch = main
+[submodule "reshaka-admin-service"]
+	path = reshaka-admin-service
+	url = https://github.com/Project-Reshaka/reshaka-admin-service.git
+	branch = main
