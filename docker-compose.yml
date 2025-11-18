@@ -2,7 +2,7 @@ version: "3.8"
 
 services:
   gateway:
-    build: ./gateway
+    build: ./reshaka-gateway-service
     ports:
       - "8200:8200"
     depends_on:
@@ -12,11 +12,11 @@ services:
       - SPRING_PROFILES_ACTIVE=dev
 
   tasks-service:
-    build: ./tasks-service
+    build: ./reshaka-task-service
   # internal port 8100
 
   usb:
-    build: ./usb
+    build: ./reshaka-admin-service
   # internal port 8102
 
   app-db:
