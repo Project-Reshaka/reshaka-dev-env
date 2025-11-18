@@ -17,15 +17,25 @@ services:
 
   usb:
     build: ./reshaka-admin-service
+    restart: always
+    env_file:
+      - .env
+    depends_on:
+      - database
+    volumes:
+      - .:/app
+    command:
+      [ "./wait-for-it.sh", "database:5432", "--", "sh", "-c", "alembic upgrade head && uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload" ]
+
   # internal port 8102
 
-  app-db:
+  database:
     image: postgres:15
     restart: always
     environment:
       POSTGRES_DB: reshaka
-      POSTGRES_USER: hello
-      POSTGRES_PASSWORD: easteregg
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
     ports:
       - "5432:5432"
     volumes:
